@@ -8,7 +8,15 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Start_Pretest.unity
     guid: 99c9720ab356a0642a771bea13969a05
+  - enabled: 1
+    path: Assets/Scenes/Millikan_ExplanationRoom.unity
+    guid: e7813f11a4fca31479295724f30e3b97
+  - enabled: 1
+    path: Assets/Scenes/End_Posttest.unity
+    guid: d17f1a3ae0c79d24988549a8e2a5b92e
   m_configObjects:
+    Unity.XR.Oculus.Settings: {fileID: 11400000, guid: b24dc2e3360f1214ea887735c8cf7936, type: 2}
+    com.unity.input.settings: {fileID: 11400000, guid: 3fff002d27260a14f987495fe28b7cc2, type: 2}
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
     com.unity.xr.management.loader_settings: {fileID: 11400000, guid: d5e0130f2efcb734884c0cd3147c6716, type: 2}
     com.unity.xr.openxr.settings4: {fileID: 11400000, guid: 567466c82df72994abbfa6032bfbf1c8, type: 2}
