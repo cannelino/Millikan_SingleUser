@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: d8c7aec27c52490418a026f25d3a6d37
+timeCreated: 1473666251
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 98134
+  packageName: Assets_classroom
+  packageVersion: 1.0
+  assetPath: Assets/Argyle/Assets_Classroom/Prefabs/Board_01_01.prefab
+  uploadId: 200095

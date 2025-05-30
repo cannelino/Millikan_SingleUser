@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: e051ff11c825ecb4f8b7457e2420622e
+timeCreated: 1473739932
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 98134
+  packageName: Assets_classroom
+  packageVersion: 1.0
+  assetPath: Assets/Argyle/Assets_Classroom/Prefabs/Whiteboard_01_01.prefab
+  uploadId: 200095

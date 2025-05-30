@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: d219e3b6e5d4d7a48857042d23d0594b
+timeCreated: 1480927278
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 98134
+  packageName: Assets_classroom
+  packageVersion: 1.0
+  assetPath: Assets/Argyle/Assets_Classroom/Prefabs/Light_01_nolight.prefab
+  uploadId: 200095
