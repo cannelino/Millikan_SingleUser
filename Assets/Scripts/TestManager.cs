@@ -43,7 +43,7 @@ public class TestManager : MonoBehaviour
         else
         {
             Debug.Log("Test abgeschlossen. Szene wird geladen...");
-            SceneManager.LoadScene("Millikan_ExplanationRoom");
+            SceneManager.LoadScene("Millikan_ExplanationRoom_Complete");
         }
     }
 }

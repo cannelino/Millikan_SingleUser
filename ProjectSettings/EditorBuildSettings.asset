@@ -5,15 +5,18 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Start_Pretest.unity
     guid: 99c9720ab356a0642a771bea13969a05
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Millikan_ExplanationRoom.unity
     guid: e7813f11a4fca31479295724f30e3b97
   - enabled: 1
     path: Assets/Scenes/End_Posttest.unity
-    guid: d17f1a3ae0c79d24988549a8e2a5b92e
+    guid: 277753a96293413469b06a1dc0108958
+  - enabled: 1
+    path: Assets/Scenes/Millikan_ExplanationRoom_Fragmented.unity
+    guid: 8542ac3893c504b4d97181a3fb0ed80d
   m_configObjects:
     Unity.XR.Oculus.Settings: {fileID: 11400000, guid: b24dc2e3360f1214ea887735c8cf7936, type: 2}
     com.unity.input.settings: {fileID: 11400000, guid: 3fff002d27260a14f987495fe28b7cc2, type: 2}
