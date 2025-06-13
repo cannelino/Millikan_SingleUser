@@ -55,40 +55,40 @@ public class QuestionnaireManager : MonoBehaviour
     // PENS Fragebogen (21 Items)
     private string[] pensQuestions = {
         "Ich fühlte mich kompetent beim Spielen.",
-        "Ich fühlte mich erfolgreich beim Erreichen der Ziele des Spiels.",
-        "Ich fühlte mich beim Spielen sehr fähig und effektiv.",
-        "Ich war in der Lage, wichtige Aspekte des Spiels zu meistern.",
-        "Ich fühlte mich beim Spielen zufrieden mit meiner Leistung.",
-        "Ich konnte beim Spielen Entscheidungen über das Vorgehen treffen.",
-        "Ich fühlte mich bei meinen Handlungen im Spiel autonom.",
-        "Meine Entscheidungen im Spiel spiegelten wider, was ich wirklich wollte.",
-        "Ich fühlte mich beim Spielen frei, meine eigenen Entscheidungen zu treffen.",
-        "Ich konnte beim Spielen meinem eigenen Interesse folgen.",
-        "Ich hatte das Gefühl, mich beim Spielen nach meinen eigenen Wünschen zu verhalten.",
-        "Ich verspürte beim Spielen Freude.",
-        "Ich empfand das Spielen als sehr unterhaltsam.",
-        "Ich fand das Spielen sehr interessant.",
-        "Ich dachte, das Spiel war ziemlich angenehm.",
-        "Während des Spielens dachte ich darüber nach, wie sehr mir das Spielen gefiel.",
-        "Ich fand das Spielen langweilig.", // Reverse scored
-        "Das Spiel war frustrierend für mich.", // Reverse scored
-        "Ich fühlte mich beim Spielen angespannt.", // Reverse scored
-        "Ich fühlte mich beim Spielen unter Druck gesetzt.", // Reverse scored
-        "Ich fühlte mich beim Spielen ängstlich." // Reverse scored
+        "Ich fühle mich beim Spielen sehr fähig und effektiv.",
+        "Meine Fähigkeit, das Spiel zu spielen, passt gut zu den Herausforderungen des Spiels",
+        "Das Spiel bietet mir interessante Optionen und Wahlmöglichkeiten.",
+        "Das Spiel erlaubt es mir, interessante Dinge zu tun.",
+        "Ich habe im Spiel viel Freiheit erlebt.",
+        "Ich finde die Beziehungen, die ich im Spiel eingehe, erfüllend.",
+        "Ich finde die Beziehungen, die ich im Spiel eingehe, wichtig.",
+        "Ich fühle mich anderen Spielern nicht nahe.", // Reverse scored
+        "Beim Spielen fühle ich mich in eine andere Zeit und an einen anderen Ort versetzt.",
+        "Die Erkundung der Spielwelt fühlt sich an wie eine echte Reise an einen neuen Ort.",
+        "Wenn ich mich durch die Spielwelt bewege, habe ich das Gefühl, tatsächlich dort zu sein.",
+        "Ereignisse im Spiel haben mich emotional nicht beeinflusst.", // Reverse scored
+        "Das Spiel war emotional fesselnd.",
+        "Ich habe im Spiel Gefühle genauso intensiv erlebt wie im echten Leben.",
+        "Beim Spielen hatte ich das Gefühl, Teil der Geschichte zu sein.",
+        "Wenn ich im Spiel etwas erreicht habe, war ich wirklich stolz darauf.", 
+        "Ich habe auf Ereignisse und Charaktere im Spiel so reagiert, als wären sie real.", 
+        "Die Steuerung des Spiels zu lernen war einfach.", 
+        "Die Steuerung des Spiels ist intuitiv.", 
+        "Wenn ich im Spiel etwas tun wollte, konnte ich mich leicht an die passende Steuerung erinnern." 
     };
 
     // NASA-TLX Fragebogen (6 Dimensionen)
     private string[] nasaTlxQuestions = {
-        "Wie hoch war die geistige Anforderung der Aufgabe?",
-        "Wie hoch war die körperliche Anforderung der Aufgabe?",
-        "Wie hoch war das Zeitdruck-Gefühl während der Aufgabe?",
-        "Wie erfolgreich waren Sie bei der Bewältigung der Aufgabe?",
-        "Wie anstrengend war es, die Aufgabe zu bewältigen?",
-        "Wie frustriert waren Sie während der Aufgabe?"
+        "Wie viel geistige Anstrengung war bei der Informationsaufnahme und -verarbeitung erforderlich (z.B. Denken, Entscheiden, Rechnen, Erinnern, Hinsehen, Suchen...)?",
+        "Wie viel körperliche Aktivität war erforderlich (z.B. Ziehen, Drücken, Drehen, Steuern, Aktivieren,…)?",
+        "Wie viel Zeitdruck empfanden Sie hinsichtlich der Häufigkeit oder dem Takt, mit dem Aufgaben oder Aufgabenelemente auftraten?",
+        "Wie erfolgreich haben Sie Ihrer Meinung nach die vom Versuchsleiter (oder Ihnen selbst) gesetzten Ziele erreicht?",
+        "Wie hart mussten sie arbeiten, um Ihren Grad an Aufgabenerfüllung zu erreichen?",
+        "Wie unsicher, entmutigt, irritiert, gestresst und verärgert (versus sicher, bestätigt, zufrieden, entspannt und zufrieden mit sich selbst) fühlten Sie sich während der Aufgabe?"
     };
 
-    private string[] nasaTlxLeftLabels = { "Sehr niedrig", "Sehr niedrig", "Sehr niedrig", "Perfekt", "Sehr niedrig", "Sehr niedrig" };
-    private string[] nasaTlxRightLabels = { "Sehr hoch", "Sehr hoch", "Sehr hoch", "Misslungen", "Sehr hoch", "Sehr hoch" };
+    private string[] nasaTlxLeftLabels = { "gering", "gering", "gering", "gut", "gering", "gering" };
+    private string[] nasaTlxRightLabels = { "hoch", "hoch", "hoch", "schlecht", "hoch", "hoch" };
 
     // Narrative Impact Fragebogen (6 Items)
     private string[] narrativeQuestions = {
@@ -167,7 +167,7 @@ public class QuestionnaireManager : MonoBehaviour
             LogPensHeader();
 
             titleText.text = "PENS Fragebogen";
-            instructionText.text = "Bewerten Sie auf einer Skala von 1 (stimme überhaupt nicht zu) bis 7 (stimme voll zu):";
+            instructionText.text = "Bewerte auf einer Skala von 1 (stimme überhaupt nicht zu) bis 7 (stimme voll zu):";
             currentQuestions = pensQuestions;
             currentAnswers = pensAnswers;
             totalPages = totalPensPages;
@@ -178,7 +178,7 @@ public class QuestionnaireManager : MonoBehaviour
             LogNasaTlxHeader();
 
             titleText.text = "NASA Task Load Index";
-            instructionText.text = "Bewerten Sie auf einer Skala von 1 bis 21:";
+            instructionText.text = "Bewerte auf einer Skala von 1 bis 21:";
             currentQuestions = nasaTlxQuestions;
             currentAnswers = nasaTlxAnswers;
             leftLabels = nasaTlxLeftLabels;
@@ -191,7 +191,7 @@ public class QuestionnaireManager : MonoBehaviour
             LogNarrativeHeader();
 
             titleText.text = "Wirkung der Narration";
-            instructionText.text = "Bewerten Sie auf einer Skala von 1 (stimme überhaupt nicht zu) bis 7 (stimme voll zu):";
+            instructionText.text = "Bewerte auf einer Skala von 1 (stimme überhaupt nicht zu) bis 7 (stimme voll zu):";
             currentQuestions = narrativeQuestions;
             currentAnswers = narrativeAnswers;
             totalPages = totalNarrativePages;
