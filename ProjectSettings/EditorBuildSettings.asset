@@ -12,11 +12,20 @@ EditorBuildSettings:
     path: Assets/Scenes/Millikan_ExplanationRoom.unity
     guid: e7813f11a4fca31479295724f30e3b97
   - enabled: 1
-    path: Assets/Scenes/End_Posttest.unity
-    guid: 277753a96293413469b06a1dc0108958
+    path: Assets/Scenes/Start_Pretest_Complete.unity
+    guid: e35cec046c9f2314d9bd42155f624337
+  - enabled: 1
+    path: Assets/Scenes/Start_Pretest_Fragmented.unity
+    guid: f4ca4a4bc54d21040b48b324ebba0358
+  - enabled: 1
+    path: Assets/Scenes/Millikan_ExplanationRoom_Complete.unity
+    guid: dd76a70a5c76abc469e822445b6bf4df
   - enabled: 1
     path: Assets/Scenes/Millikan_ExplanationRoom_Fragmented.unity
     guid: 8542ac3893c504b4d97181a3fb0ed80d
+  - enabled: 1
+    path: Assets/Scenes/End_Posttest.unity
+    guid: 277753a96293413469b06a1dc0108958
   m_configObjects:
     Unity.XR.Oculus.Settings: {fileID: 11400000, guid: b24dc2e3360f1214ea887735c8cf7936, type: 2}
     com.unity.input.settings: {fileID: 11400000, guid: 3fff002d27260a14f987495fe28b7cc2, type: 2}

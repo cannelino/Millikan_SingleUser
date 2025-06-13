@@ -4728,6 +4728,75 @@ MonoBehaviour:
   installationRoutineCheckpoint:
     _installationRoutineId: 
     _installationVariants: []
+--- !u!1 &163345978
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 163345980}
+  - component: {fileID: 163345981}
+  m_Layer: 0
+  m_Name: InteractionLoggerButtons
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &163345980
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 163345978}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 15.287633, y: -0.10979438, z: 11.345489}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &163345981
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 163345978}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55c5b431f63a9ee4c93ac62212257f1f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  specificButtons:
+  - button: {fileID: 1120228055}
+    customID: 01
+    description: 
+  - button: {fileID: 555783944}
+    customID: 02
+    description: 
+  - button: {fileID: 406338927}
+    customID: 03
+    description: 
+  - button: {fileID: 1342275752}
+    customID: 04
+    description: 
+  - button: {fileID: 730836456}
+    customID: 05
+    description: 
+  - button: {fileID: 2105709461}
+    customID: 06
+    description: 
+  - button: {fileID: 1108116956}
+    customID: 07
+    description: 
+  autoRegisterAllButtons: 1
+  logInteractionStart: 1
+  excludeButtonNames: []
 --- !u!1 &164432354
 GameObject:
   m_ObjectHideFlags: 0
@@ -60816,6 +60885,15 @@ MonoBehaviour:
   - {fileID: 1923727022}
   - {fileID: 1869568420}
   - {fileID: 436887344}
+  enableFeedback: 0
+  correctColor: {r: 0, g: 1, b: 0, a: 1}
+  incorrectColor: {r: 1, g: 0, b: 0, a: 1}
+  defaultButtonColor: {r: 1, g: 1, b: 1, a: 1}
+  feedbackDuration: 3
+  feedbackPanel: {fileID: 0}
+  feedbackText: {fileID: 0}
+  nextSceneName: Millikan_ExplanationRoom_Complete
+  nextSceneIndex: 2
 --- !u!4 &1987197087
 Transform:
   m_ObjectHideFlags: 0
@@ -65547,3 +65625,4 @@ SceneRoots:
   - {fileID: 1305058194}
   - {fileID: 1243498700}
   - {fileID: 1729542004}
+  - {fileID: 163345980}

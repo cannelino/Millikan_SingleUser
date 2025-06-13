@@ -1,0 +1,28 @@
+=== VR STUDY LOG ===
+Participant ID: 1001
+Session Start: 2025-06-13 17:07:34
+Unity Version: 6000.0.44f1
+Platform: WindowsEditor
+=====================================
+
+[2025-06-13 17:07:34.860] [00:00:00.005] SESSION_START | Participant ID: 1001
+[2025-06-13 17:07:35.075] [00:00:00.219] APPLICATION_RESUMED
+[2025-06-13 17:07:35.076] [00:00:00.219] APPLICATION_FOCUS_GAINED
+[2025-06-13 17:07:35.305] [00:00:00.448] PRE_KNOWLEDGE_TEST_START | #Pre-Wissenstest#
+[2025-06-13 17:07:51.419] [00:00:16.562] PRE_KNOWLEDGE_TEST_ANSWER | QuestionID: 1 | AnswerID: 2 | Data: Question: Welche Körper untersuchte MILLIKAN in seinem Versuch? | Selected: Öltröpfchen
+[2025-06-13 17:07:52.574] [00:00:17.717] PRE_KNOWLEDGE_TEST_ANSWER | QuestionID: 2 | AnswerID: 1 | Data: Question: Welche typischen Eigenschaften hatten die Öltröpchen, die MILLIKAN in seinem Versuch beobachtete? | Selected: Form einer Kugel
+[2025-06-13 17:07:53.144] [00:00:18.287] PRE_KNOWLEDGE_TEST_ANSWER | QuestionID: 3 | AnswerID: 1 | Data: Question: Welches Feld ließ MILLIKAN unter anderem auf die Öltröpfchen wirken? | Selected: Gravitationsfeld
+[2025-06-13 17:07:54.063] [00:00:19.206] PRE_KNOWLEDGE_TEST_ANSWER | QuestionID: 4 | AnswerID: 1 | Data: Question: Welche Kräfte wirkten unter anderem auf die Öltröpfchen während der verschiedenen Versuchsphasen? | Selected: Magnetische Kraft
+[2025-06-13 17:07:55.483] [00:00:20.626] PRE_KNOWLEDGE_TEST_ANSWER | QuestionID: 5 | AnswerID: 1 | Data: Question: Welche Richtungen hatten die Kräfte, die auf die Öltröpfchen wirkten? | Selected: Die STOKESsche Reibungskraft wirkte stets nach oben.
+[2025-06-13 17:07:56.082] [00:00:21.225] PRE_KNOWLEDGE_TEST_ANSWER | QuestionID: 6 | AnswerID: 1 | Data: Question: Welche Einflussmöglichkeiten hatte MILLIKAN auf das Elektrische Feld? | Selected: Er konnte die Frequenz des Elektrischen Feldes verändern.
+[2025-06-13 17:07:57.125] [00:00:22.268] PRE_KNOWLEDGE_TEST_ANSWER | QuestionID: 7 | AnswerID: 1 | Data: Question: Welche physikalische Bedingung konnte MILLIKAN unter anderem mit seiner Gleichfeldmethode herstellen? | Selected: Schweben mit elektrischem Feld
+[2025-06-13 17:07:57.752] [00:00:22.895] PRE_KNOWLEDGE_TEST_ANSWER | QuestionID: 8 | AnswerID: 1 | Data: Question: Welche physikalische Größe konnte im Versuch direkt gemessen werden? | Selected: Tröpfchenladung
+[2025-06-13 17:07:58.351] [00:00:23.494] PRE_KNOWLEDGE_TEST_ANSWER | QuestionID: 9 | AnswerID: 1 | Data: Question: Welche physikalische Größe konnte Tabellenwerken entnommen werden? | Selected: Dichte von Öl
+[2025-06-13 17:07:59.646] [00:00:24.789] PRE_KNOWLEDGE_TEST_ANSWER | QuestionID: 10 | AnswerID: 1 | Data: Question: Von den beiden Methoden ist die Methode 'Fallen und Steigen mit Feld' der Methode 'Schweben und Fallen ohne Feld' vorzuziehen. Warum? | Selected: Beim Fallen ohne Feld herrscht kein elektrisches Feld. Dieses ist aber unbedingt nötig, um das Experiment auswerten zu können.
+[2025-06-13 17:08:17.436] [00:00:42.579] APPLICATION_FOCUS_LOST
+[2025-06-13 17:08:17.623] [00:00:42.768] SESSION_END | Duration: 00:00:42
+
+=== SESSION ENDED ===
+End Time: 2025-06-13 17:08:17
+Total Duration: 00:00:42
+=====================
