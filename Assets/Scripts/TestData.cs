@@ -13,7 +13,7 @@ public class TestData : MonoBehaviour
             correctAnswerIndex = 1
         });
         questions.Add(new TestQuestion {
-            questionText = "Welche typischen Eigenschaften hatten die Öltröpchen, die MILLIKAN in seinem Versuch beobachtete?",
+            questionText = "Welche typischen Eigenschaften hatten die Öltröpfchen, die MILLIKAN in seinem Versuch beobachtete?",
             answers = new string[] { "Form einer Kugel", "Sehr hohe Dichte", "Form eines Zylinders" },
             correctAnswerIndex = 0
         });
