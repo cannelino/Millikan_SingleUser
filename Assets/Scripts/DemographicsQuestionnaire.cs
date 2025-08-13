@@ -85,11 +85,10 @@ public class DemographicsQuestionnaire : MonoBehaviour
 
     void LogDemographicsHeader()
     {
-        if (!hasLoggedDemographicsHeader && StudyLogger.Instance != null)
+        if (!hasLoggedDemographicsHeader)
         {
-            StudyLogger.Instance.LogEvent("DEMOGRAPHICS_START", "#Demographics_Questionnaire#");
+            Debug.Log("Demographics Questionnaire gestartet");
             hasLoggedDemographicsHeader = true;
-            Debug.Log("Demographics Questionnaire Header geloggt.");
         }
     }
 
@@ -128,14 +127,14 @@ public class DemographicsQuestionnaire : MonoBehaviour
         gradeDropdown.options.Add(new TMP_Dropdown.OptionData("13. Klasse"));
         gradeDropdown.value = 0;
 
-        // Millikan Knowledge Dropdown
+        // Millikan Knowledge Dropdown "noch nie gehört", "gehört, keine Details", "grundsätzlich bekannt", "gut bekannt", "sehr gut bekannt"
         millikansKnowledgeDropdown.options.Clear();
         millikansKnowledgeDropdown.options.Add(new TMP_Dropdown.OptionData("Bitte wählen..."));
         millikansKnowledgeDropdown.options.Add(new TMP_Dropdown.OptionData("noch nie gehört"));
-        millikansKnowledgeDropdown.options.Add(new TMP_Dropdown.OptionData("gehört, aber keine Details bekannt"));
+        millikansKnowledgeDropdown.options.Add(new TMP_Dropdown.OptionData("gehört, keine Details"));
         millikansKnowledgeDropdown.options.Add(new TMP_Dropdown.OptionData("grundsätzlich bekannt"));
-        millikansKnowledgeDropdown.options.Add(new TMP_Dropdown.OptionData("gut bekannt (z. B. bereits im Unterricht behandelt)"));
-        millikansKnowledgeDropdown.options.Add(new TMP_Dropdown.OptionData("sehr gut bekannt (z. B. eigenes Referat oder Klausurthema)"));
+        millikansKnowledgeDropdown.options.Add(new TMP_Dropdown.OptionData("gut bekannt"));
+        millikansKnowledgeDropdown.options.Add(new TMP_Dropdown.OptionData("sehr gut bekannt"));
         millikansKnowledgeDropdown.value = 0;
 
         // Physics Interest Dropdown
@@ -169,8 +168,8 @@ public class DemographicsQuestionnaire : MonoBehaviour
         vrFrequencyDropdown.options.Clear();
         vrFrequencyDropdown.options.Add(new TMP_Dropdown.OptionData("Bitte wählen..."));
         vrFrequencyDropdown.options.Add(new TMP_Dropdown.OptionData("nur einmal"));
-        vrFrequencyDropdown.options.Add(new TMP_Dropdown.OptionData("gelegentlich (z. B. wenige Male im Jahr)"));
-        vrFrequencyDropdown.options.Add(new TMP_Dropdown.OptionData("regelmäßig (z. B. mehrmals im Monat oder häufiger)"));
+        vrFrequencyDropdown.options.Add(new TMP_Dropdown.OptionData("gelegentlich"));
+        vrFrequencyDropdown.options.Add(new TMP_Dropdown.OptionData("regelmäßig"));
         vrFrequencyDropdown.value = 0;
     }
 
@@ -226,7 +225,6 @@ public class DemographicsQuestionnaire : MonoBehaviour
         else
         {
             Debug.LogWarning("Bitte alle Pflichtfelder ausfüllen!");
-            // Hier könntest du eine Warnung anzeigen
         }
     }
 
@@ -318,26 +316,35 @@ public class DemographicsQuestionnaire : MonoBehaviour
 
     void LogCurrentPageAnswers()
     {
-        if (StudyLogger.Instance == null) return;
-
+        // Debug-Logs für Entwicklung
         switch (currentPage)
         {
             case 0:
-                StudyLogger.Instance.LogEvent("DEMOGRAPHICS_AGE", $"Age: {GetAgeText(demographicsData.age)}");
-                StudyLogger.Instance.LogEvent("DEMOGRAPHICS_GENDER", $"Gender: {GetGenderText(demographicsData.gender)}");
-                StudyLogger.Instance.LogEvent("DEMOGRAPHICS_GRADE", $"Grade: {GetGradeText(demographicsData.grade)}");
+                Debug.Log($"Demographics gespeichert: Age: {GetAgeText(demographicsData.age)}, Gender: {GetGenderText(demographicsData.gender)}, Grade: {GetGradeText(demographicsData.grade)}");
                 break;
 
             case 1:
-                StudyLogger.Instance.LogEvent("PHYSICS_MILLIKAN_KNOWLEDGE", $"Level: {GetMillikanKnowledgeText(demographicsData.millikansKnowledge)}");
-                StudyLogger.Instance.LogEvent("PHYSICS_INTEREST", $"Interest: {GetPhysicsInterestText(demographicsData.physicsInterest)}");
-                StudyLogger.Instance.LogEvent("PHYSICS_ELECTRODYNAMICS", $"Knowledge: {GetElectrodynamicsText(demographicsData.electrodynamicsKnowledge)}");
+                Debug.Log($"Physics Knowledge gespeichert: Millikan: {GetMillikanKnowledgeText(demographicsData.millikansKnowledge)}, Interest: {GetPhysicsInterestText(demographicsData.physicsInterest)}, Electro: {GetElectrodynamicsText(demographicsData.electrodynamicsKnowledge)}");
                 break;
 
             case 2:
-                StudyLogger.Instance.LogEvent("VR_EXPERIENCE", $"HasExperience: {(demographicsData.vrExperience == 0 ? "ja" : "nein")}");
-                if (demographicsData.vrExperience == 0)
-                    StudyLogger.Instance.LogEvent("VR_FREQUENCY", $"Frequency: {GetVRFrequencyText(demographicsData.vrFrequency)}");
+                Debug.Log($"VR Experience gespeichert: Experience: {(demographicsData.vrExperience == 0 ? "ja" : "nein")}, Frequency: {GetVRFrequencyText(demographicsData.vrFrequency)}");
+
+                // Am Ende alle Demographics Daten an CSV Logger senden
+                if (CSVStudyLogger.Instance != null)
+                {
+                    CSVStudyLogger.Instance.LogDemographics(
+                        demographicsData.age,
+                        demographicsData.gender,
+                        demographicsData.grade,
+                        demographicsData.millikansKnowledge,
+                        demographicsData.physicsInterest,
+                        demographicsData.electrodynamicsKnowledge,
+                        demographicsData.vrExperience,
+                        demographicsData.vrFrequency
+                    );
+                    Debug.Log("Alle Demographics Daten an CSV Logger gesendet");
+                }
                 break;
         }
     }
@@ -393,12 +400,6 @@ public class DemographicsQuestionnaire : MonoBehaviour
     {
         SaveCurrentPageData();
         LogCurrentPageAnswers();
-
-        // Logge Ende des Demographics
-        if (StudyLogger.Instance != null)
-        {
-            StudyLogger.Instance.LogEvent("DEMOGRAPHICS_END", "Demographics Fragebogen abgeschlossen");
-        }
 
         Debug.Log("Demographics abgeschlossen. Wechsle zum Quiz.");
 

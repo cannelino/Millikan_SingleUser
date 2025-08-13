@@ -60,14 +60,20 @@ public class TestManager_Frag : MonoBehaviour
         // Logge Pre-Wissenstest Header beim ersten Start
         LogPreTestHeader();
 
+        // Starte Pre-Test Logging
+        if (CSVStudyLogger.Instance != null)
+        {
+            CSVStudyLogger.Instance.LogPreTestStart();
+        }
+
         DisplayQuestion();
     }
 
     void LogPreTestHeader()
     {
-        if (!hasLoggedPreTestHeader && StudyLogger.Instance != null)
+        if (!hasLoggedPreTestHeader)
         {
-            StudyLogger.Instance.LogEvent("PRE_KNOWLEDGE_TEST_START", "#Pre-Wissenstest#");
+            Debug.Log("Pre-Wissenstest (Fragment) gestartet");
             hasLoggedPreTestHeader = true;
         }
     }
@@ -189,9 +195,9 @@ public class TestManager_Frag : MonoBehaviour
             return;
         }
 
-        Debug.Log($"Antwort gewählt: {index} - {currentQuestion.answers[index]}");
+        Debug.Log($"Antwort gewählt: {index}");
 
-        // Logge die Antwort mit StudyLogger
+        // Logge die Antwort mit CSV Logger
         LogQuizAnswer(index);
 
         if (enableFeedback)
@@ -209,7 +215,8 @@ public class TestManager_Frag : MonoBehaviour
 
     void LogQuizAnswer(int selectedAnswerIndex)
     {
-        if (StudyLogger.Instance != null)
+        // CSV Logging
+        if (CSVStudyLogger.Instance != null)
         {
             // Sicherheitscheck vor Zugriff auf Arrays
             if (currentIndex >= testData.questions.Count)
@@ -237,14 +244,13 @@ public class TestManager_Frag : MonoBehaviour
             // Antwort ID ist selectedAnswerIndex + 1 (da wir bei 1 anfangen wollen für die IDs)
             int answerId = selectedAnswerIndex + 1;
 
-            string details = $"QuestionID: {questionId} | AnswerID: {answerId}";
-            string additionalData = $"Question: {currentQuestion.questionText} | Selected: {currentQuestion.answers[selectedAnswerIndex]}";
+            CSVStudyLogger.Instance.LogPreTestAnswer(questionId, answerId);
 
-            StudyLogger.Instance.LogEvent("PRE_KNOWLEDGE_TEST_ANSWER", details, additionalData);
+            Debug.Log($"Pre-Test (Fragment) Antwort geloggt: Q{questionId}, A{answerId}");
         }
         else
         {
-            Debug.LogWarning("StudyLogger.Instance ist null - Antwort konnte nicht geloggt werden!");
+            Debug.LogWarning("CSVStudyLogger.Instance ist null - Antwort konnte nicht geloggt werden!");
         }
     }
 
@@ -355,9 +361,10 @@ public class TestManager_Frag : MonoBehaviour
     void CompleteTest()
     {
         // Logge das Ende des Pre-Wissenstests
-        if (StudyLogger.Instance != null)
+        if (CSVStudyLogger.Instance != null)
         {
-            StudyLogger.Instance.LogEvent("PRE_KNOWLEDGE_TEST_END", "Test abgeschlossen");
+            CSVStudyLogger.Instance.LogPreTestEnd();
+            Debug.Log("Pre-Wissenstest (Fragment) Ende geloggt.");
         }
 
         Debug.Log("Test abgeschlossen. Szene wird geladen...");
@@ -433,6 +440,7 @@ public class TestManager_Frag : MonoBehaviour
         Debug.Log($"Current Index: {currentIndex}");
         Debug.Log($"Total Questions: {(testData != null && testData.questions != null ? testData.questions.Count : 0)}");
         Debug.Log($"Answer Buttons: {answerButtons?.Length ?? 0}");
+        Debug.Log($"Header Logged: {hasLoggedPreTestHeader}");
     }
 
     // Setze Szenen-Informationen zur Laufzeit

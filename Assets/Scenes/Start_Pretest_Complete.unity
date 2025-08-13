@@ -19415,54 +19415,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 381694422}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &788700259
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 788700261}
-  - component: {fileID: 788700260}
-  m_Layer: 0
-  m_Name: StudyLogger
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &788700260
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 788700259}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bd0eee4ac92bec441b8914f593a98d54, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  participantID: 1001
-  logFileName: VR_Study_Log.txt
-  enableDebugLogs: 0
-  customLogPath: C:\Users\janin\Documents\GitHub\Millikan_SingleUser\Logs
---- !u!4 &788700261
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 788700259}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.0587958, y: 1.0353115, z: 18.502537}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &791742365
 GameObject:
   m_ObjectHideFlags: 0
@@ -44551,6 +44503,52 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1421700376}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1758672709
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1758672711}
+  - component: {fileID: 1758672710}
+  m_Layer: 0
+  m_Name: CSVStudyLogger
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1758672710
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1758672709}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9940d88e35838354fb4825d5bcbe0f72, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  participantID: 0001
+  customLogPath: 
+--- !u!4 &1758672711
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1758672709}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.58480453, y: 0.9497275, z: 1.3072491}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1760515018
 GameObject:
   m_ObjectHideFlags: 0
@@ -55750,7 +55748,7 @@ SceneRoots:
   - {fileID: 759187207}
   - {fileID: 277812568}
   - {fileID: 1214218774}
-  - {fileID: 788700261}
   - {fileID: 718712614}
   - {fileID: 1752717687}
   - {fileID: 1873014043}
+  - {fileID: 1758672711}

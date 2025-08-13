@@ -67,20 +67,21 @@ public class TestManager_Post : MonoBehaviour
         // Logge Post-Wissenstest Header beim ersten Start
         LogPostTestHeader();
 
+        // Starte Post-Test Logging
+        if (CSVStudyLogger.Instance != null)
+        {
+            CSVStudyLogger.Instance.LogPostTestStart();
+        }
+
         DisplayQuestion();
     }
 
     void LogPostTestHeader()
     {
-        if (!hasLoggedPostTestHeader && StudyLogger.Instance != null)
+        if (!hasLoggedPostTestHeader)
         {
-            StudyLogger.Instance.LogEvent("POST_KNOWLEDGE_TEST_START", "#Post-Wissenstest#");
+            Debug.Log("Post-Wissenstest gestartet");
             hasLoggedPostTestHeader = true;
-            Debug.Log("Post-Wissenstest Header geloggt.");
-        }
-        else if (StudyLogger.Instance == null)
-        {
-            Debug.LogWarning("StudyLogger.Instance ist null - Header konnte nicht geloggt werden!");
         }
     }
 
@@ -266,7 +267,7 @@ public class TestManager_Post : MonoBehaviour
 
     void LogQuizAnswer(int selectedAnswerIndex)
     {
-        if (StudyLogger.Instance != null)
+        if (CSVStudyLogger.Instance != null)
         {
             // Sicherheitscheck vor Zugriff auf Arrays
             if (currentIndex >= testData.questions.Count)
@@ -294,19 +295,13 @@ public class TestManager_Post : MonoBehaviour
             // Antwort ID ist selectedAnswerIndex + 1 (da wir bei 1 anfangen wollen für die IDs)
             int answerId = selectedAnswerIndex + 1;
 
-            // Bestimme ob Antwort korrekt ist
-            bool isCorrect = selectedAnswerIndex == currentQuestion.correctAnswerIndex;
+            CSVStudyLogger.Instance.LogPostTestAnswer(questionId, answerId);
 
-            string details = $"QuestionID: {questionId} | AnswerID: {answerId} | IsCorrect: {isCorrect}";
-            string additionalData = $"Question: {currentQuestion.questionText} | Selected: {currentQuestion.answers[selectedAnswerIndex]} | CorrectAnswer: {currentQuestion.answers[currentQuestion.correctAnswerIndex]}";
-
-            StudyLogger.Instance.LogEvent("POST_KNOWLEDGE_TEST_ANSWER", details, additionalData);
-
-            Debug.Log($"Post-Test Antwort geloggt: Q{questionId}, A{answerId}, Korrekt: {isCorrect}");
+            Debug.Log($"Post-Test Antwort geloggt: Q{questionId}, A{answerId}");
         }
         else
         {
-            Debug.LogWarning("StudyLogger.Instance ist null - Antwort konnte nicht geloggt werden!");
+            Debug.LogWarning("CSVStudyLogger.Instance ist null - Antwort konnte nicht geloggt werden!");
         }
     }
 
@@ -379,9 +374,9 @@ public class TestManager_Post : MonoBehaviour
     void CompleteTest()
     {
         // Logge das Ende des Post-Wissenstests
-        if (StudyLogger.Instance != null)
+        if (CSVStudyLogger.Instance != null)
         {
-            StudyLogger.Instance.LogEvent("POST_KNOWLEDGE_TEST_END", "Post-Wissenstest abgeschlossen");
+            CSVStudyLogger.Instance.LogPostTestEnd();
             Debug.Log("Post-Wissenstest Ende geloggt.");
         }
 
@@ -393,10 +388,11 @@ public class TestManager_Post : MonoBehaviour
         // Zeige Abschlusstext
         ShowCompletionMessage();
 
-        // Logge das Ende der gesamten Studie
-        if (StudyLogger.Instance != null)
+        // Logge das Ende der gesamten Studie und erstelle CSV
+        if (CSVStudyLogger.Instance != null)
         {
-            StudyLogger.Instance.LogEvent("STUDY_COMPLETED", "Gesamte Studie abgeschlossen - alle Komponenten beendet");
+            CSVStudyLogger.Instance.EndSession();
+            Debug.Log("CSV-Datei wurde erstellt - Studie abgeschlossen!");
         }
     }
 
@@ -495,12 +491,5 @@ public class TestManager_Post : MonoBehaviour
         Debug.Log($"Answer Buttons: {answerButtons?.Length ?? 0}");
         Debug.Log($"Question Answered: {questionAnswered}");
         Debug.Log($"Header Logged: {hasLoggedPostTestHeader}");
-    }
-
-    [ContextMenu("Force Log Header")]
-    public void ForceLogHeader()
-    {
-        hasLoggedPostTestHeader = false; // Reset flag
-        LogPostTestHeader();
     }
 }

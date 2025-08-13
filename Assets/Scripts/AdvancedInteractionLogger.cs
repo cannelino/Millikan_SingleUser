@@ -7,29 +7,25 @@ public class AdvancedInteractionLogger : MonoBehaviour
 {
     [Header("Manual Button Registration")]
     [SerializeField] private List<LoggableButton> specificButtons = new List<LoggableButton>();
-    [Tooltip("Trage hier spezifische Buttons mit custom IDs ein")]
 
     [Header("Auto-Registration Settings")]
     [SerializeField] private bool autoRegisterAllButtons = true;
     [SerializeField] private bool logInteractionStart = true;
     [SerializeField] private string[] excludeButtonNames = { "CloseButton", "BackButton" };
-    [Tooltip("Button-Namen die NICHT automatisch registriert werden sollen")]
 
     private bool hasLoggedInteractionHeader = false;
     private HashSet<Button> registeredButtons = new HashSet<Button>();
+    private int buttonCounter = 1;
 
     void Start()
     {
-        // Logge Interaction Header beim ersten Start
         if (logInteractionStart)
         {
             LogInteractionHeader();
         }
 
-        // Registriere spezifische Buttons zuerst
         RegisterSpecificButtons();
 
-        // Dann automatische Registrierung falls gewünscht
         if (autoRegisterAllButtons)
         {
             RegisterAllButtons();
@@ -38,11 +34,10 @@ public class AdvancedInteractionLogger : MonoBehaviour
 
     void LogInteractionHeader()
     {
-        if (!hasLoggedInteractionHeader && StudyLogger.Instance != null)
+        if (!hasLoggedInteractionHeader)
         {
-            StudyLogger.Instance.LogEvent("INTERACTION_FRAGMENTS_START", "#Interaction_Fragments#");
+            Debug.Log("Interaction Fragments Phase gestartet");
             hasLoggedInteractionHeader = true;
-            Debug.Log("Interaction Fragments Phase gestartet und geloggt.");
         }
     }
 
@@ -59,16 +54,14 @@ public class AdvancedInteractionLogger : MonoBehaviour
 
     void RegisterAllButtons()
     {
-        Button[] allButtons = FindObjectsOfType<Button>();
+        Button[] allButtons = FindObjectsByType<Button>(FindObjectsSortMode.None);
         Debug.Log($"Gefundene Buttons in Szene: {allButtons.Length}");
 
         foreach (Button button in allButtons)
         {
-            // Überspringe bereits registrierte Buttons
             if (registeredButtons.Contains(button))
                 continue;
 
-            // Überspringe ausgeschlossene Buttons
             if (ShouldExcludeButton(button))
             {
                 Debug.Log($"Button ausgeschlossen: {button.name}");
@@ -102,7 +95,7 @@ public class AdvancedInteractionLogger : MonoBehaviour
         button.onClick.AddListener(() => LogButtonInteraction(buttonID, button));
         registeredButtons.Add(button);
 
-        Debug.Log($"Button registriert für Logging: {buttonID}");
+        Debug.Log($"Button registriert für CSV-Logging: {buttonID}");
     }
 
     string GetButtonID(Button button, string customID = "")
@@ -112,7 +105,6 @@ public class AdvancedInteractionLogger : MonoBehaviour
 
         string buttonID = button.gameObject.name;
 
-        // Text hinzufügen falls vorhanden
         TextMeshProUGUI buttonText = button.GetComponentInChildren<TextMeshProUGUI>();
         if (buttonText != null && !string.IsNullOrEmpty(buttonText.text))
         {
@@ -132,66 +124,40 @@ public class AdvancedInteractionLogger : MonoBehaviour
 
     public void LogButtonInteraction(string buttonID, Button button = null)
     {
-        if (StudyLogger.Instance != null)
+        if (CSVStudyLogger.Instance != null)
         {
-            string details = $"ButtonID: {buttonID}";
-            string additionalData = "";
+            CSVStudyLogger.Instance.LogButtonClick(buttonCounter);
+            Debug.Log($"Button {buttonCounter} geklickt und an CSV geloggt: {buttonID}");
 
-            if (button != null)
+            buttonCounter++;
+
+            if (buttonCounter > 7)
             {
-                Vector3 worldPos = button.transform.position;
-                additionalData += $"Position: ({worldPos.x:F2}, {worldPos.y:F2}, {worldPos.z:F2})";
-
-                // Button-Text
-                TextMeshProUGUI buttonText = button.GetComponentInChildren<TextMeshProUGUI>();
-                if (buttonText != null && !string.IsNullOrEmpty(buttonText.text))
-                {
-                    additionalData += $" | Text: '{buttonText.text}'";
-                }
-
-                // Szenen-Info
-                additionalData += $" | Scene: {UnityEngine.SceneManagement.SceneManager.GetActiveScene().name}";
+                Debug.LogWarning("Mehr als 7 Button-Clicks! Weitere Clicks werden nicht geloggt.");
             }
-
-            StudyLogger.Instance.LogEvent("BUTTON_INTERACTION", details, additionalData);
-            Debug.Log($"Button-Interaktion geloggt: {buttonID}");
         }
-    }
-
-    // Öffentliche Methoden für externe Verwendung
-    public void LogInteractionEnd()
-    {
-        if (StudyLogger.Instance != null)
+        else
         {
-            StudyLogger.Instance.LogEvent("INTERACTION_FRAGMENTS_END", "Interaction Phase beendet");
+            Debug.LogWarning("CSVStudyLogger.Instance ist null - Button-Click konnte nicht geloggt werden!");
         }
-    }
 
-    public void AddButtonToTracking(Button button, string customID = "")
-    {
-        RegisterButton(button, customID);
-    }
-
-    public void RemoveButtonFromTracking(Button button)
-    {
-        if (button != null && registeredButtons.Contains(button))
+        if (button != null)
         {
-            registeredButtons.Remove(button);
-            // Note: onClick Listener können nicht einfach entfernt werden ohne Referenz
-            Debug.Log($"Button aus Tracking entfernt: {button.name}");
+            Vector3 worldPos = button.transform.position;
+            Debug.Log($"Button Details - ID: {buttonID}, Position: ({worldPos.x:F2}, {worldPos.y:F2}, {worldPos.z:F2})");
         }
     }
 
-    // Utility Methode für manuelle Logs
     public void LogCustomButtonClick(string buttonID, string additionalInfo = "")
     {
-        if (StudyLogger.Instance != null)
+        if (CSVStudyLogger.Instance != null)
         {
-            StudyLogger.Instance.LogEvent("BUTTON_INTERACTION", $"ButtonID: {buttonID}", additionalInfo);
+            CSVStudyLogger.Instance.LogButtonClick(buttonCounter);
+            Debug.Log($"Custom Button {buttonCounter} geklickt: {buttonID} - {additionalInfo}");
+            buttonCounter++;
         }
     }
 
-    // Debug Methods
     [ContextMenu("Show Registered Buttons")]
     public void ShowRegisteredButtons()
     {
@@ -201,5 +167,21 @@ public class AdvancedInteractionLogger : MonoBehaviour
             if (btn != null)
                 Debug.Log($"- {btn.name}");
         }
+        Debug.Log($"Nächste Button-Nummer: {buttonCounter}");
+    }
+}
+
+[System.Serializable]
+public class LoggableButton
+{
+    public Button button;
+    public string customID;
+    public string description;
+
+    public LoggableButton(Button btn, string id = "", string desc = "")
+    {
+        button = btn;
+        customID = id;
+        description = desc;
     }
 }
