@@ -40508,7 +40508,7 @@ Transform:
   m_GameObject: {fileID: 1445652916}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: -0.142, z: 0}
   m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -56749,6 +56749,15 @@ MonoBehaviour:
   - {fileID: 1923727022}
   - {fileID: 1869568420}
   - {fileID: 436887344}
+  enableFeedback: 0
+  correctColor: {r: 0, g: 1, b: 0, a: 1}
+  incorrectColor: {r: 1, g: 0, b: 0, a: 1}
+  defaultButtonColor: {r: 1, g: 1, b: 1, a: 1}
+  feedbackDuration: 3
+  feedbackPanel: {fileID: 0}
+  feedbackText: {fileID: 0}
+  nextSceneName: Millikan_ExplanationRoom_Complete
+  nextSceneIndex: 2
 --- !u!4 &1987197087
 Transform:
   m_ObjectHideFlags: 0
