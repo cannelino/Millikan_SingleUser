@@ -39127,8 +39127,7 @@ MonoBehaviour:
     abgeschlossen.\n\nBitte lege die Controller jetzt vorsichtig vor Dir auf den
     Tisch.\nDu kannst die VR-Brille danach ganz in Ruhe abnehmen.\n\nWenn du Unterst\xFCtzung
     brauchst, sag einfach laut:\n\u201EIch bin fertig mit der Anwendung!\u201C\nDann
-    kommen wir direkt zu Dir.\n\nAm Ausgang wartet eine kleine Belohnung \u2013 bedien
-    Dich gern!"
+    kommen wir direkt zu Dir."
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
